@@ -93,3 +93,20 @@ module.exports = {
     ],
   },
 };
+
+JSON:-
+
+// ESLint Autofix on save
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+
+    "eslint.workingDirectories": [
+        "./client", 
+        "./server"
+    ],
+
+    // Show Git folder
+    "files.exclude": {
+        "**/.git": false,
+    },
