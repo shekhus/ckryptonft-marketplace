@@ -5,8 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import images from '../assets';
+import {Button} from './'
 
-const MenuItems = ({ isMobile, active, setActive, setIsOpen }) => {
+const MenuItems = ({ isMobile, active, setActive}) => {
   const generateLink = (i) => {
     switch (i) {
       case 0:
@@ -25,18 +26,28 @@ const MenuItems = ({ isMobile, active, setActive, setIsOpen }) => {
       {['Explore NFTs', 'Listed NFTs', 'My NFTs'].map((item, i) => (
         <li
           key={i}
-          onClick={() => {}}
+          onClick={() => {
+            setActive(item)
+          }}
           className={`flex flex-row items-center font-poppins font-semibold text-base dark:hover:text-white hover:text-nft-dark mx-3
           ${active === item
             ? 'dark:text-white text-nft-black-1'
             : 'dark:text-nft-gray-3 text-nft-gray-2'} 
-          `}
+          ${isMobile && 'my-5 text-xl'}`}
         >
-        <Link href={generateLink(i)}>{item}</Link>
+          <Link href={generateLink(i)}>{item}</Link>
         </li>
       ))}
     </ul>
   );
+};
+
+const ButtonGroup=() =>{
+  const hasConnected =false;
+
+  return hasConnected ?(
+  <Button classStyles='mx-2 rounded-x1' />) 
+  : <Button />;
 }
 
 const Navbar = () => {
@@ -82,9 +93,10 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden flex">
-          <ul className="list-none flexCenter flex-row">
             <MenuItems active={active} setActive={setActive} />
-          </ul>
+            <div className='ml-4'>
+               <ButtonGroup/>
+           </div>
         </div>
 
     </nav>
